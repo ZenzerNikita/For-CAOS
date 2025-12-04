@@ -2,12 +2,13 @@
 .global main
 
 main:
-	STP fp, lr, [sp, 16]
+	STP fp, lr, [sp, 16]!
 	MOV fp, sp
+	SUB sp, sp, 16
 	ADR x0,  fmt_in
 	ADD x1, sp, 0
 	ADD x2, sp, 8
-	bl scanf
+	BL scanf
 	LDR x3, [sp]
 	LDR x4, [sp, 8]
 	SUB x5, x3, x4
@@ -16,10 +17,10 @@ main:
 	BL printf
 	ADD sp, sp, 16
 	MOV x0, #0
-	LDP fr, lr, [sp], 16
+	LDP fp, lr, [sp], 16
 	RET
 fmt_in:
 	.asciz "%lld%lld"
-fmt_our:
+fmt_out:
 	.asciz "%lld\n"
 
