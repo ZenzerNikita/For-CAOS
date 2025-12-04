@@ -2,7 +2,7 @@
 .global main
 
 main:
-	STP fp, lr, [sp, 16]!
+	STP fp, lr, [sp, -16]!
 	MOV fp, sp
 	SUB sp, sp, 16
 	ADR x0,  fmt_in
@@ -19,6 +19,7 @@ main:
 	MOV x0, #0
 	LDP fp, lr, [sp], 16
 	RET
+	.aline 2
 fmt_in:
 	.asciz "%lld%lld"
 fmt_out:
